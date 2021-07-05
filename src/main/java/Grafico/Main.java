@@ -15,14 +15,14 @@ import excepcion.excepcion;
 public class Main {
     public static void main(String[] args) throws excepcion {
         Facade prueb=new Facade();
-        prueb.CrearClienteFacade("jarol",1234);
+        prueb.CrearClienteFacade("jarol Vidal A",319254064,"jarol",1234);
         prueb.CrearCajeroFacade("1");
-        prueb.AumentarBilletesFacade("1", 10, 10, 10, 10, 10);
+        prueb.AumentarBilletesFacade("1",10,10,10,10,10);
         prueb.ConsignarFacade("jarol",1200000);
         System.out.println(prueb.ConsultarSaldoClienteFacade("jarol",1234));
-        int[] billetes=new int[5];
+        Integer[] billetes=new Integer[5];
         try {
-            billetes = prueb.retiroCompleto("1",1250000,"jarol",1234);
+            billetes = prueb.retiroCompleto("1",127000,"jarol",1234);
             for (int i = 0; i < billetes.length; i++) {
                 System.out.println(billetes[i]);
             }
