@@ -21,16 +21,16 @@ public class ClienteMemoria implements ClienteDao{
         datos=new ArrayList<>();
     }
     @Override
-    public void CrearCliente(String codigo, int clave) {
-        Cliente cliente=new Cliente(codigo,clave);
+    public void CrearCliente(String nombre,Integer cedula,String codigo, Integer clave) {
+        Cliente cliente=new Cliente(nombre,cedula,codigo,clave);
         datos.add(cliente);     
     }
     
     @Override
-    public boolean Retirar(String codigo,int clave,int monto) throws excepcion{
+    public boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcion{
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)
-                &&dato.getClave()==clave) {
+                &&dato.getClave().equals(clave)) {
                 int Ft=dato.getFondos();
                 if(Ft>monto){
                     int valor=Ft-monto;
@@ -43,9 +43,9 @@ public class ClienteMemoria implements ClienteDao{
     }
 
     @Override
-    public int ConsultarSaldo(String codigo,int clave) {
+    public Integer ConsultarSaldo(String codigo,Integer clave) {
         for (Cliente dato : datos) {
-            if (dato.getCodigo().equals(codigo)&&dato.getClave()==clave) {
+            if (dato.getCodigo().equals(codigo)&&dato.getClave().equals(clave)) {
                 return dato.getFondos();
             }
         }
@@ -53,7 +53,7 @@ public class ClienteMemoria implements ClienteDao{
     }
 
     @Override
-    public void AgregarSaldo(String codigo, int consignacion) {
+    public void AgregarSaldo(String codigo, Integer consignacion) {
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)) {
                 dato.setFondos(dato.getFondos()+consignacion);

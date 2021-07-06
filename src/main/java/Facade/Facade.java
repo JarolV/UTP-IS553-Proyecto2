@@ -9,6 +9,7 @@ import Dao.CajeroDao;
 import Dao.CajeroMemoria;
 import Dao.ClienteDao;
 import Dao.ClienteMemoria;
+import Entidades.Cliente;
 import excepcion.excepcion;
 
 /**
@@ -26,22 +27,22 @@ public class Facade{
     public void CrearCajeroFacade(String codigo){
         cajeroDao.crearCajero(codigo);
     }
-    public int [] retiroCompleto(String codigoCajero,int monto,String codigo,int clave) throws excepcion {
+    public Integer[] retiroCompleto(String codigoCajero,Integer monto,String codigo,Integer clave) throws excepcion {
         if(clienteDao.Retirar(codigo, clave, monto)){
             return cajeroDao.DescontarBilletes(codigoCajero, monto);
         }
         return null;
     }
-    public void AumentarBilletesFacade(String codigoCajero,int Cant2,int Cant5,int Cant10,int Cant20,int Cant50) {
+    public void AumentarBilletesFacade(String codigoCajero,Integer Cant2,Integer Cant5,Integer Cant10,Integer Cant20,Integer Cant50) {
         cajeroDao.AumentarBilletes(codigoCajero, Cant2, Cant5, Cant10, Cant20, Cant50);
     }
-    public void CrearClienteFacade(String codigo,int clave) {
-        clienteDao.CrearCliente(codigo, clave);
+    public void CrearClienteFacade(String nombre,Integer cedula,String codigo,Integer clave) {
+        clienteDao.CrearCliente(nombre,cedula,codigo, clave);
     }
-    public int ConsultarSaldoClienteFacade(String codigo,int clave){
+    public Integer ConsultarSaldoClienteFacade(String codigo,Integer clave){
         return clienteDao.ConsultarSaldo(codigo, clave);
     }
-    public void ConsignarFacade(String codigo,int consignacion) {
+    public void ConsignarFacade(String codigo,Integer consignacion) {
         clienteDao.AgregarSaldo(codigo, consignacion);
     }
     

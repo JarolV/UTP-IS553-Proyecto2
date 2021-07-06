@@ -14,23 +14,24 @@ import excepcion.excepcion;
 public class ClienteDB implements ClienteDao{
 
     @Override
-    public void CrearCliente(String codigo, int clave) {
+    public void CrearCliente(String nombre, Integer cedula, String codigo, Integer clave) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean Retirar(String codigo, int clave, int monto) throws excepcion {
+    public boolean Retirar(String codigo, Integer clave, Integer monto) throws excepcion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int ConsultarSaldo(String codigo, int clave) {
+    public Integer ConsultarSaldo(String codigo, Integer clave) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void AgregarSaldo(String codigo, int consignacion) {
+    public void AgregarSaldo(String codigo, Integer consignacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

@@ -5,28 +5,52 @@
  */
 package Entidades;
 
+import javax.persistence.Entity;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author jarol
  */
-public class Cajero {
+@Entity
+@Table(name ="cajero")
+public class Cajero implements Serializable{
+    @Id
+    @GeneratedValue
+    @Column(name="codigoCajero")
     private String codigoCajero;
+    @Column(name = "estado")
     private boolean estado;
-    private int dosmil;
-    private int cincomil;
-    private int diezmil;
-    private int veintemil;
-    private int cincuentamil;
+    @Column(name = "cant2mil")
+    private Integer dosmil;
+    @Column(name = "cant5mil")
+    private Integer cincomil;
+    @Column(name = "cant10mil")
+    private Integer diezmil;
+    @Column(name = "cant20mil")
+    private Integer veintemil;
+    @Column(name = "cant50mil")
+    private Integer cincuentamil;
 
     public Cajero() {
     }
 
     public Cajero(String codigoCajero) {
         this.codigoCajero = codigoCajero;
+        this.estado = true;
+        this.dosmil = 0;
+        this.cincomil = 0;
+        this.diezmil = 0;
+        this.veintemil = 0;
+        this.cincuentamil = 0;
     }
     
 
-    public Cajero(String codigoCajero, boolean estado, int dosmil, int cincomil, int diezmil, int veintemil, int cincuentamil) {
+    public Cajero(String codigoCajero, boolean estado, Integer dosmil, Integer cincomil, Integer diezmil, Integer veintemil, Integer cincuentamil) {
         this.codigoCajero = codigoCajero;
         this.estado = estado;
         this.dosmil = dosmil;
@@ -35,8 +59,6 @@ public class Cajero {
         this.veintemil = veintemil;
         this.cincuentamil = cincuentamil;
     }
-
-    
 
     public String getCodigoCajero() {
         return codigoCajero;
@@ -54,49 +76,44 @@ public class Cajero {
         this.estado = estado;
     }
 
-    public int getDosmil() {
+    public Integer getDosmil() {
         return dosmil;
     }
 
-    public void setDosmil(int dosmil) {
+    public void setDosmil(Integer dosmil) {
         this.dosmil = dosmil;
     }
 
-    public int getCincomil() {
+    public Integer getCincomil() {
         return cincomil;
     }
 
-    public void setCincomil(int cincomil) {
+    public void setCincomil(Integer cincomil) {
         this.cincomil = cincomil;
     }
 
-    public int getVeintemil() {
-        return veintemil;
-    }
-
-    public void setVeintemil(int veintemil) {
-        this.veintemil = veintemil;
-    }
-
-    public int getCincuentamil() {
-        return cincuentamil;
-    }
-
-    public void setCincuentamil(int cincuentamil) {
-        this.cincuentamil = cincuentamil;
-    }
-
-    public int getDiezmil() {
+    public Integer getDiezmil() {
         return diezmil;
     }
 
-    public void setDiezmil(int diezmil) {
+    public void setDiezmil(Integer diezmil) {
         this.diezmil = diezmil;
     }
 
-    @Override
-    public String toString() {
-        return "Cajero{" + "codigoCajero=" + codigoCajero + ", estado=" + estado + ", dosmil=" + dosmil + ", cincomil=" + cincomil + ", diezmil=" + diezmil + ", veintemil=" + veintemil + ", cincuentamil=" + cincuentamil + '}';
+    public Integer getVeintemil() {
+        return veintemil;
+    }
+
+    public void setVeintemil(Integer veintemil) {
+        this.veintemil = veintemil;
+    }
+
+    public Integer getCincuentamil() {
+        return cincuentamil;
+    }
+
+    public void setCincuentamil(Integer cincuentamil) {
+        this.cincuentamil = cincuentamil;
     }
     
     

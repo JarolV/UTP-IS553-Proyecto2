@@ -19,13 +19,15 @@ public class CajeroDB implements CajeroDao{
     }
 
     @Override
-    public int[] DescontarBilletes(String codigoCajero, int monto) throws excepcion {
+    public Integer[] DescontarBilletes(String codigoCajero, Integer monto) throws excepcion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void AumentarBilletes(String codigoCajero, int Cant2, int Cant5, int Cant10, int Cant20, int Cant50) {
+    public void AumentarBilletes(String codigoCajero, Integer Cant2, Integer Cant5, Integer Cant10, Integer Cant20, Integer Cant50) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
     
 }

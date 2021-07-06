@@ -14,6 +14,6 @@ import excepcion.excepcion;
  */
 public interface CajeroDao {
     void crearCajero(String codigo);
-    int[] DescontarBilletes(String codigoCajero,int monto) throws excepcion;
-    void AumentarBilletes(String codigoCajero,int Cant2,int Cant5,int Cant10,int Cant20,int Cant50);
+    Integer[] DescontarBilletes(String codigoCajero,Integer monto) throws excepcion;
+    void AumentarBilletes(String codigoCajero,Integer Cant2,Integer Cant5,Integer Cant10,Integer Cant20,Integer Cant50);
 }
