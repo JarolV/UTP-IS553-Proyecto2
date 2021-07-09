@@ -28,8 +28,13 @@ public class Facade{
         cajeroDao.crearCajero(codigo);
     }
     public Integer[] retiroCompleto(String codigoCajero,Integer monto,String codigo,Integer clave) throws excepcion {
-        if(clienteDao.Retirar(codigo, clave, monto)){
-            return cajeroDao.DescontarBilletes(codigoCajero, monto);
+        if(clienteDao.Retirar(codigo, clave,monto)){
+            try {
+                return cajeroDao.DescontarBilletes(codigoCajero,monto);
+            } catch (excepcion ex) {
+                clienteDao.AgregarSaldo(codigo, monto);
+                throw new excepcion(ex.getMessage());
+            }  
         }
         return null;
     }
@@ -45,6 +50,8 @@ public class Facade{
     public void ConsignarFacade(String codigo,Integer consignacion) {
         clienteDao.AgregarSaldo(codigo, consignacion);
     }
-    
+    public Integer[] cantidadBilletesCajero(String codigoCajero){
+        return cajeroDao.cantidadbilletes(codigoCajero);
+    }
     
 }
