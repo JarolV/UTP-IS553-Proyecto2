@@ -5,11 +5,9 @@
  */
 package Grafico;
 
-import Entidades.Cliente;
 import Facade.Facade;
 import excepcion.campoInvalido;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import excepcion.excepcionDatos;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class UI extends javax.swing.JFrame {
     Facade datos=new Facade();
-    /**
-     * Creates new form UI
-     */
     public UI() {
         initComponents();
         IniciarBanco();
@@ -72,7 +67,6 @@ public class UI extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTexCodigoCajeroAgregar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -84,6 +78,7 @@ public class UI extends javax.swing.JFrame {
         jSpinner4 = new javax.swing.JSpinner();
         jSpinner5 = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -101,6 +96,7 @@ public class UI extends javax.swing.JFrame {
         btnRetirar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
 
         jMenu1.setText("jMenu1");
@@ -160,7 +156,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jButton1)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,6 +321,12 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -345,13 +347,13 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTexCodigoCajeroAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton7)))
+                        .addComponent(jButton7))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -362,7 +364,7 @@ public class UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jTexCodigoCajeroAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -383,7 +385,7 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jButton7))
         );
 
@@ -418,7 +420,13 @@ public class UI extends javax.swing.JFrame {
 
         jLabel10.setText("Cajero:");
 
+        codigoCajero.setEditable(false);
         codigoCajero.setText("CodigoCajero");
+        codigoCajero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoCajeroActionPerformed(evt);
+            }
+        });
 
         CuentaCajero.setText("Ingrese N cuenta:");
 
@@ -450,6 +458,11 @@ public class UI extends javax.swing.JFrame {
         });
 
         btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -519,10 +532,16 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Elegir Cajero");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
             }
         });
 
@@ -531,15 +550,19 @@ public class UI extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(40, 40, 40)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -547,11 +570,11 @@ public class UI extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
+            .addGap(0, 216, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 381, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -563,8 +586,9 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -574,9 +598,12 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Cajeros", jPanel4);
@@ -592,7 +619,7 @@ public class UI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -600,30 +627,39 @@ public class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CuentaCajero.setVisible(true);
-        ClaveCajero.setVisible(true);
-        MontoCajero.setVisible(false);
-        jTextClaveCajero.setVisible(true);
-        jTextCuentaCajero.setVisible(true);
-        jTextMontoCajero.setVisible(false);
-        btnConsultar.setVisible(true);
-        btnRetirar.setVisible(false);
+        if(codigoCajero.getText().equals("CodigoCajero")){
+            JOptionPane.showMessageDialog(this,"Ingrese un cajero para realizar la transaccion");
+        }else{    
+            CuentaCajero.setVisible(true);
+            ClaveCajero.setVisible(true);
+            MontoCajero.setVisible(false);
+            jTextClaveCajero.setVisible(true);
+            jTextCuentaCajero.setVisible(true);
+            jTextMontoCajero.setVisible(false);
+            btnConsultar.setVisible(true);
+            btnRetirar.setVisible(false);
+        }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        CuentaCajero.setVisible(true);
-        ClaveCajero.setVisible(true);
-        MontoCajero.setVisible(true);
-        jTextClaveCajero.setVisible(true);
-        jTextCuentaCajero.setVisible(true);
-        jTextMontoCajero.setVisible(true);
-        btnConsultar.setVisible(false);
-        btnRetirar.setVisible(true);
+        if(codigoCajero.getText().equals("CodigoCajero")){
+            JOptionPane.showMessageDialog(this,"Ingrese un cajero para realizar la transaccion");
+        }else{     
+            CuentaCajero.setVisible(true);
+            ClaveCajero.setVisible(true);
+            MontoCajero.setVisible(true);
+            jTextClaveCajero.setVisible(true);
+            jTextCuentaCajero.setVisible(true);
+            jTextMontoCajero.setVisible(true);
+            btnConsultar.setVisible(false);
+            btnRetirar.setVisible(true);
+        }
+      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        codigoCajero.setText((String)jComboBox1.getSelectedItem());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -636,6 +672,9 @@ public class UI extends javax.swing.JFrame {
         } catch (campoInvalido ex) {
             JOptionPane.showMessageDialog(this,ex,
                         getTitle(), JOptionPane.ERROR_MESSAGE);
+        } catch (excepcionDatos ex) {
+            JOptionPane.showMessageDialog(this,ex,
+                        getTitle(), JOptionPane.ERROR_MESSAGE);
         }
     
         
@@ -644,7 +683,12 @@ public class UI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if(ObtenerConsignacion()){
-               datos.ConsignarFacade(jTextCuentaConsignacion.getText().trim(),Integer.valueOf(jTextConfirmarMontoConsignacion.getText().trim()));
+                try {
+                    datos.ConsignarFacade(jTextCuentaConsignacion.getText().trim(),Integer.valueOf(jTextConfirmarMontoConsignacion.getText().trim()));
+                } catch (excepcionDatos ex) {
+                    JOptionPane.showMessageDialog(this,ex,
+                        getTitle(), JOptionPane.ERROR_MESSAGE);
+                }
                JOptionPane.showMessageDialog(null,"La consignacion se realizo con exito");
                limpiar();
             }
@@ -659,7 +703,8 @@ public class UI extends javax.swing.JFrame {
             if(ObtenerCrearCajero()){
                 datos.CrearCajeroFacade(jTextCodigoCrearCajero.getText().trim());
                 JOptionPane.showMessageDialog(null,"El cajero fue creado");
-               limpiar();
+                limpiar();
+                Formulario();
             }
         } catch (campoInvalido ex) {
             JOptionPane.showMessageDialog(this,ex,
@@ -671,8 +716,8 @@ public class UI extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
             if(ObtenerCajeroBilletes()){
-                datos.AumentarBilletesFacade(jTextCodigoCrearCajero.getText().trim(), (Integer) jSpinner1.getValue(), (Integer) jSpinner2.getValue(), (Integer) jSpinner3.getValue(), (Integer) jSpinner4.getValue(), (Integer) jSpinner5.getValue());
-                JOptionPane.showMessageDialog(null,"Los billetes han sido agragados");
+                datos.AumentarBilletesFacade((String)jComboBox1.getSelectedItem(), (Integer) jSpinner1.getValue(), (Integer) jSpinner2.getValue(), (Integer) jSpinner3.getValue(), (Integer) jSpinner4.getValue(), (Integer) jSpinner5.getValue());
+                JOptionPane.showMessageDialog(null,"Los billetes han sido agregados");
                 limpiar();
             }
         } catch (campoInvalido ex) {
@@ -686,13 +731,59 @@ public class UI extends javax.swing.JFrame {
             if(ObtenerConsultarCajero()){
                 Integer saldo=datos.ConsultarSaldoClienteFacade(jTextCuentaCajero.getText().trim(),Integer.valueOf(jTextClaveCajero.getText().trim()));
                 JOptionPane.showMessageDialog(null,"Su saldo es de:"+saldo);
+                Integer[] cantidadbilletes=new Integer[5];
+                cantidadbilletes=datos.cantidadBilletesCajero(codigoCajero.getText().trim());
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(cantidadbilletes[i]);
+                }
                 limpiar();
             }
         } catch (campoInvalido ex) {
             JOptionPane.showMessageDialog(this,ex,
                         getTitle(), JOptionPane.ERROR_MESSAGE);
+        } catch (excepcionDatos ex) {
+           JOptionPane.showMessageDialog(this,ex,
+                        getTitle(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+        try {
+            if(ObtenerRetiroCajero()){
+                Integer[] billetes=new Integer[5];
+                for (int i = 0; i < billetes.length; i++) {
+                    System.out.println(billetes[i]);
+                }
+                billetes =datos.retiroCompleto(codigoCajero.getText().trim(),Integer.valueOf(jTextMontoCajero.getText().trim()),jTextCuentaCajero.getText().trim(),Integer.valueOf(jTextClaveCajero.getText().trim()));
+                JOptionPane.showMessageDialog(null,"Su retiro ha sido exitoso\n"
+                          + "Billetes 50000: "+billetes[0]
+                          + "Billetes 20000: "+billetes[1]
+                          + "Billetes 10000: "+billetes[2]
+                          + "Billetes 5000: "+billetes[3]
+                          + "Billetes 2000: "+billetes[4]
+                          );
+            }
+            
+        } catch (campoInvalido ex) {
+            JOptionPane.showMessageDialog(this,ex,
+                        getTitle(), JOptionPane.ERROR_MESSAGE);
+        } catch (excepcionDatos ex) {
+            JOptionPane.showMessageDialog(this,ex,
+                        getTitle(), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRetirarActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void codigoCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoCajeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoCajeroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -729,19 +820,28 @@ public class UI extends javax.swing.JFrame {
         });
     }
     public void limpiar(){
-    jTextCedula.setText("");
-    jTextClave.setText("");
-    jTextClaveCajero.setText("");
-    jTextConfirmarMontoConsignacion.setText("");
-    jTextCuenta.setText("");
-    jTextCuentaCajero.setText("");
-    jTextCuentaConsignacion.setText("");
-    jTextMontoCajero.setText("");
-    jTextMontoConsignacion.setText("");
-    jTextNombre.setText("");
-    jTextCodigoCrearCajero.setText("");
-    jTexCodigoCajeroAgregar.setText("");
-    
+        jTextCedula.setText("");
+        jTextClave.setText("");
+        jTextClaveCajero.setText("");
+        jTextConfirmarMontoConsignacion.setText("");
+        jTextCuenta.setText("");
+        jTextCuentaCajero.setText("");
+        jTextCuentaConsignacion.setText("");
+        jTextMontoCajero.setText("");
+        jTextMontoConsignacion.setText("");
+        jTextNombre.setText("");
+        jTextCodigoCrearCajero.setText("");
+    }
+    public void Formulario() {
+        String[] cajeros=datos.cajeros();
+        jComboBox1.removeAllItems();
+        for (String cajero : cajeros) {
+            jComboBox1.addItem(cajero);
+        } 
+        jComboBox2.removeAllItems();
+        for (String cajero : cajeros) {
+            jComboBox2.addItem(cajero);
+        } 
     }
     public boolean ObtenerCuenta() throws campoInvalido{
         if(jTextNombre.getText().trim().isBlank()){
@@ -783,7 +883,7 @@ public class UI extends javax.swing.JFrame {
         return true;
     }
     public boolean ObtenerCajeroBilletes() throws campoInvalido{
-        if (jTextCodigoCrearCajero.getText().trim().isBlank()) {
+        if (!jTextCodigoCrearCajero.getText().trim().isBlank()) {
             throw  new campoInvalido("Debe ingresar codigo cajero");
         }
         return true;
@@ -797,6 +897,24 @@ public class UI extends javax.swing.JFrame {
         }
         if(!(jTextClaveCajero.getText().trim().length()==4)){
             throw new campoInvalido("La clave debe de ser de 4 digitos");
+        }
+        return true;
+    }
+    public boolean ObtenerRetiroCajero() throws campoInvalido{
+        if (jTextCuentaCajero.getText().trim().isBlank()) {
+            throw  new campoInvalido("Debe ingresar un numero de cuenta cajero");
+        }
+        if(!jTextClaveCajero.getText().matches("[0-9]+")){
+            throw new campoInvalido("La clave debe de ser numerica");
+        }
+        if(!(jTextClaveCajero.getText().trim().length()==4)){
+            throw new campoInvalido("La clave debe de ser de 4 digitos");
+        }
+        if(!jTextMontoCajero.getText().matches("[0-9]+")){
+            throw new campoInvalido("El monto debe ser numerico");
+        }
+        if(Integer.valueOf(jTextMontoCajero.getText().trim())<5000){
+            throw new campoInvalido("El monto debe ser mayor a 5000");
         }
         return true;
     }
@@ -826,6 +944,8 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -868,7 +988,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTexCodigoCajeroAgregar;
     private javax.swing.JTextField jTextCedula;
     private javax.swing.JTextField jTextClave;
     private javax.swing.JTextField jTextClaveCajero;
