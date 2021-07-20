@@ -6,7 +6,7 @@
 package Dao;
 
 import Entidades.Cajero;
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
@@ -14,6 +14,8 @@ import excepcion.excepcion;
  */
 public interface CajeroDao {
     void crearCajero(String codigo);
-    Integer[] DescontarBilletes(String codigoCajero,Integer monto) throws excepcion;
+    Integer[] DescontarBilletes(String codigoCajero,Integer monto) throws excepcionDatos;
     void AumentarBilletes(String codigoCajero,Integer Cant2,Integer Cant5,Integer Cant10,Integer Cant20,Integer Cant50);
+    Integer[] cantidadbilletes(String codigoCajero);
+    String[] listaCajeros();
 }

@@ -5,7 +5,7 @@
  */
 package Dao;
 import Entidades.Cajero;
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -34,9 +34,9 @@ public class CajeroMemoria implements CajeroDao{
        
     }
     @Override
-    public Integer[] DescontarBilletes(String codigoCajero,Integer monto) throws excepcion{
+    public Integer[] DescontarBilletes(String codigoCajero,Integer monto) throws excepcionDatos{
         Integer[] billetes=new Integer[5];
-        for(int i=0;i<=4;i++) {
+        for(int i=0;i<5;i++) {
             billetes[i] = 0;
         }
         
@@ -69,7 +69,7 @@ public class CajeroMemoria implements CajeroDao{
                      monto=monto-cant2*2000;
                   }
                   if(monto!=0){
-                      throw new excepcion("No se puede realizar la operacion");
+                      throw new excepcionDatos("No se puede realizar la operacion");
                   }  
                   cajeroEditar.setCincuentamil(cajeroEditar.getCincuentamil()-cant50);
                   cajeroEditar.setVeintemil(cajeroEditar.getVeintemil()-cant20);
@@ -77,7 +77,7 @@ public class CajeroMemoria implements CajeroDao{
                   cajeroEditar.setCincomil(cajeroEditar.getCincomil()-cant5);
                   cajeroEditar.setDosmil(cajeroEditar.getDosmil()-cant2);
               }else{
-                 throw new excepcion("No hay suficientes billetes");
+                 throw new excepcionDatos("No hay suficientes billetes");
               }
             }
         } 
@@ -97,6 +97,33 @@ public class CajeroMemoria implements CajeroDao{
                 cajeroEditar.setCincuentamil(cajeroEditar.getCincuentamil()+Cant50);
             }
         }
+    }
+
+    @Override
+    public Integer[] cantidadbilletes(String codigoCajero) {
+        Integer[] billetes=new Integer[5];
+        for(int i=0;i<5;i++) {
+            billetes[i] = 0;
+        }
+        for(Cajero cajeroEditar:datos){
+               billetes[0]=cajeroEditar.getCincuentamil();
+               billetes[1]=cajeroEditar.getVeintemil();
+               billetes[2]=cajeroEditar.getDiezmil();
+               billetes[3]=cajeroEditar.getCincomil();
+               billetes[4]=cajeroEditar.getDosmil();
+              }
+        return billetes;
+    }
+
+    @Override
+    public String[] listaCajeros() {
+        String[] cajeros=new String[datos.size()];
+        Integer i=0;
+        for (Cajero cajero : datos) {
+            cajeros[i]=cajero.getCodigoCajero();
+            i++;
+        }
+        return cajeros;
     }
 
   

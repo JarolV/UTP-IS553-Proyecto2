@@ -9,9 +9,9 @@ package excepcion;
  *
  * @author jarol
  */
-public class excepcion extends Exception{
+public class excepcionDatos extends Exception{
 
-    public excepcion(String massage) {
+    public excepcionDatos(String massage) {
         super(massage);
     }
     

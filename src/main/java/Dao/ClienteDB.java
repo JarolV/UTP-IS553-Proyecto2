@@ -5,7 +5,7 @@
  */
 package Dao;
 
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ClienteDB implements ClienteDao{
     }
 
     @Override
-    public boolean Retirar(String codigo, Integer clave, Integer monto) throws excepcion {
+    public boolean Retirar(String codigo, Integer clave, Integer monto) throws excepcionDatos {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

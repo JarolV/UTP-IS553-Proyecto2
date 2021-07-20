@@ -5,17 +5,16 @@
  */
 package Dao;
 
-import Entidades.Cliente;
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
  * @author jarol
  */
-public interface ClienteDao {
-    void CrearCliente(String nombre,Integer cedula,String codigo,Integer clave);
-    boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcion;
-    Integer ConsultarSaldo(String codigo,Integer clave);
+public interface ClienteDao{
+    void CrearCliente(String nombre,Integer cedula,String codigo,Integer clave) throws excepcionDatos;
+    boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcionDatos;
+    Integer ConsultarSaldo(String codigo,Integer clave) throws excepcionDatos;
     void AgregarSaldo(String codigo,Integer consignacion);
     
 }

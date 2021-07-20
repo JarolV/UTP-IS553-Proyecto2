@@ -8,7 +8,7 @@ package Dao;
 import Entidades.Cliente;
 import java.util.ArrayList;
 import java.util.List;
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
@@ -21,13 +21,18 @@ public class ClienteMemoria implements ClienteDao{
         datos=new ArrayList<>();
     }
     @Override
-    public void CrearCliente(String nombre,Integer cedula,String codigo, Integer clave) {
+    public void CrearCliente(String nombre,Integer cedula,String codigo, Integer clave)throws excepcionDatos{
+        for (Cliente dato : datos) {
+            if(dato.getCodigo().equals(codigo)){
+                throw new excepcionDatos("Ya hay una cuenta con este numero de cuenta");
+            }      
+        }
         Cliente cliente=new Cliente(nombre,cedula,codigo,clave);
         datos.add(cliente);     
     }
     
     @Override
-    public boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcion{
+    public boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcionDatos{
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)
                 &&dato.getClave().equals(clave)) {
@@ -39,21 +44,21 @@ public class ClienteMemoria implements ClienteDao{
                 }
             }
         }
-      throw new excepcion("No hay dinero suficiente en su cuenta");
+      throw new excepcionDatos("Error en transaccion");
     }
 
     @Override
-    public Integer ConsultarSaldo(String codigo,Integer clave) {
+    public Integer ConsultarSaldo(String codigo,Integer clave) throws excepcionDatos{
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)&&dato.getClave().equals(clave)) {
                 return dato.getFondos();
             }
         }
-        return 0;
+        throw new excepcionDatos("Error en transaccion");
     }
 
     @Override
-    public void AgregarSaldo(String codigo, Integer consignacion) {
+    public void AgregarSaldo(String codigo, Integer consignacion){
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)) {
                 dato.setFondos(dato.getFondos()+consignacion);

@@ -9,8 +9,7 @@ import Dao.CajeroDao;
 import Dao.CajeroMemoria;
 import Dao.ClienteDao;
 import Dao.ClienteMemoria;
-import Entidades.Cliente;
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
@@ -27,13 +26,13 @@ public class Facade{
     public void CrearCajeroFacade(String codigo){
         cajeroDao.crearCajero(codigo);
     }
-    public Integer[] retiroCompleto(String codigoCajero,Integer monto,String codigo,Integer clave) throws excepcion {
+    public Integer[] retiroCompleto(String codigoCajero,Integer monto,String codigo,Integer clave) throws excepcionDatos {
         if(clienteDao.Retirar(codigo, clave,monto)){
             try {
                 return cajeroDao.DescontarBilletes(codigoCajero,monto);
-            } catch (excepcion ex) {
+            } catch (excepcionDatos ex) {
                 clienteDao.AgregarSaldo(codigo, monto);
-                throw new excepcion(ex.getMessage());
+                throw new excepcionDatos(ex.getMessage());
             }  
         }
         return null;
@@ -41,17 +40,19 @@ public class Facade{
     public void AumentarBilletesFacade(String codigoCajero,Integer Cant2,Integer Cant5,Integer Cant10,Integer Cant20,Integer Cant50) {
         cajeroDao.AumentarBilletes(codigoCajero, Cant2, Cant5, Cant10, Cant20, Cant50);
     }
-    public void CrearClienteFacade(String nombre,Integer cedula,String codigo,Integer clave) {
+    public void CrearClienteFacade(String nombre,Integer cedula,String codigo,Integer clave) throws excepcionDatos {
         clienteDao.CrearCliente(nombre,cedula,codigo, clave);
     }
-    public Integer ConsultarSaldoClienteFacade(String codigo,Integer clave){
+    public Integer ConsultarSaldoClienteFacade(String codigo,Integer clave) throws excepcionDatos{
         return clienteDao.ConsultarSaldo(codigo, clave);
     }
-    public void ConsignarFacade(String codigo,Integer consignacion) {
+    public void ConsignarFacade(String codigo,Integer consignacion) throws excepcionDatos {
         clienteDao.AgregarSaldo(codigo, consignacion);
     }
     public Integer[] cantidadBilletesCajero(String codigoCajero){
         return cajeroDao.cantidadbilletes(codigoCajero);
     }
-    
+    public String[] cajeros(){
+        return cajeroDao.listaCajeros();
+    }
 }

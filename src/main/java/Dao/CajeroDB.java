@@ -5,7 +5,7 @@
  */
 package Dao;
 
-import excepcion.excepcion;
+import excepcion.excepcionDatos;
 
 /**
  *
@@ -19,7 +19,7 @@ public class CajeroDB implements CajeroDao{
     }
 
     @Override
-    public Integer[] DescontarBilletes(String codigoCajero, Integer monto) throws excepcion {
+    public Integer[] DescontarBilletes(String codigoCajero, Integer monto) throws excepcionDatos {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -27,6 +27,20 @@ public class CajeroDB implements CajeroDao{
     public void AumentarBilletes(String codigoCajero, Integer Cant2, Integer Cant5, Integer Cant10, Integer Cant20, Integer Cant50) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Integer[] cantidadbilletes(String codigoCajero) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] listaCajeros() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+
+   
 
 
     

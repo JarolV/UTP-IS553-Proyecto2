@@ -9,10 +9,8 @@ package excepcion;
  *
  * @author jarol
  */
-public class campoInvalido  extends excepcion{
-
+public class campoInvalido  extends excepcionDatos{
     public campoInvalido(String message) {
         super(message);
     }
-    
 }
