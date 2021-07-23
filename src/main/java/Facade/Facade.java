@@ -5,8 +5,10 @@
  */
 package Facade;
 
+import Dao.CajeroDB;
 import Dao.CajeroDao;
 import Dao.CajeroMemoria;
+import Dao.ClienteDB;
 import Dao.ClienteDao;
 import Dao.ClienteMemoria;
 import excepcion.excepcionDatos;
@@ -20,8 +22,8 @@ public class Facade{
     private final ClienteDao clienteDao;
 
     public Facade(){
-        cajeroDao =new CajeroMemoria();
-        clienteDao= new ClienteMemoria();
+        cajeroDao =new CajeroDB();
+        clienteDao= new ClienteDB();
     }
     public void CrearCajeroFacade(String codigo){
         cajeroDao.crearCajero(codigo);
@@ -46,8 +48,8 @@ public class Facade{
     public Integer ConsultarSaldoClienteFacade(String codigo,Integer clave) throws excepcionDatos{
         return clienteDao.ConsultarSaldo(codigo, clave);
     }
-    public void ConsignarFacade(String codigo,Integer consignacion) throws excepcionDatos {
-        clienteDao.AgregarSaldo(codigo, consignacion);
+    public boolean ConsignarFacade(String codigo,Integer consignacion) throws excepcionDatos {
+        return clienteDao.AgregarSaldo(codigo, consignacion);
     }
     public Integer[] cantidadBilletesCajero(String codigoCajero){
         return cajeroDao.cantidadbilletes(codigoCajero);

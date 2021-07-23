@@ -8,6 +8,8 @@ package Grafico;
 import Facade.Facade;
 import excepcion.campoInvalido;
 import excepcion.excepcionDatos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,7 @@ public class UI extends javax.swing.JFrame {
     Facade datos=new Facade();
     public UI() {
         initComponents();
+        Formulario();
         IniciarBanco();
     }
 
@@ -671,7 +674,7 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        codigoCajero.setText((String)jComboBox1.getSelectedItem());
+        codigoCajero.setText((String)jComboBox2.getSelectedItem());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -696,18 +699,22 @@ public class UI extends javax.swing.JFrame {
         try {
             if(ObtenerConsignacion()){
                 try {
-                    datos.ConsignarFacade(jTextCuentaConsignacion.getText().trim(),Integer.valueOf(jTextConfirmarMontoConsignacion.getText().trim()));
+                    if(datos.ConsignarFacade(jTextCuentaConsignacion.getText().trim(),Integer.valueOf(jTextConfirmarMontoConsignacion.getText().trim()))){
+                        JOptionPane.showMessageDialog(null,"La consignacion se realizo con exito");
+                    }
                 } catch (excepcionDatos ex) {
                     JOptionPane.showMessageDialog(this,ex,
-                        getTitle(), JOptionPane.ERROR_MESSAGE);
+                            getTitle(), JOptionPane.ERROR_MESSAGE);
                 }
-               JOptionPane.showMessageDialog(null,"La consignacion se realizo con exito");
-               limpiar();
+                
+                limpiar();
+                
             }
         } catch (campoInvalido ex) {
             JOptionPane.showMessageDialog(this,ex,
-                        getTitle(), JOptionPane.ERROR_MESSAGE);
+                            getTitle(), JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -768,11 +775,11 @@ public class UI extends javax.swing.JFrame {
                 }
                 billetes =datos.retiroCompleto(codigoCajero.getText().trim(),Integer.valueOf(jTextMontoCajero.getText().trim()),jTextCuentaCajero.getText().trim(),Integer.valueOf(jTextClaveCajero.getText().trim()));
                 JOptionPane.showMessageDialog(null,"Su retiro ha sido exitoso\n"
-                          + "Billetes 50000: "+billetes[0]
-                          + "Billetes 20000: "+billetes[1]
-                          + "Billetes 10000: "+billetes[2]
-                          + "Billetes 5000: "+billetes[3]
-                          + "Billetes 2000: "+billetes[4]
+                          + "Billetes 50000: "+billetes[0]+"\n"
+                          + "Billetes 20000: "+billetes[1]+"\n"
+                          + "Billetes 10000: "+billetes[2]+"\n"
+                          + "Billetes 5000:  "+billetes[3]+"\n"
+                          + "Billetes 2000:  "+billetes[4]
                           );
             }
             

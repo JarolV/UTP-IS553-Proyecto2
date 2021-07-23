@@ -15,6 +15,6 @@ public interface ClienteDao{
     void CrearCliente(String nombre,Integer cedula,String codigo,Integer clave) throws excepcionDatos;
     boolean Retirar(String codigo,Integer clave,Integer monto) throws excepcionDatos;
     Integer ConsultarSaldo(String codigo,Integer clave) throws excepcionDatos;
-    void AgregarSaldo(String codigo,Integer consignacion);
+    boolean AgregarSaldo(String codigo,Integer consignacion) throws excepcionDatos;
     
 }

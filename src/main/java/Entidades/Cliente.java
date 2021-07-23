@@ -18,6 +18,14 @@ public class Cliente {
 
     public Cliente() {
     }
+
+    public Cliente(String nombre, Integer cedula, String codigo, Integer clave, Integer fondos) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.codigo = codigo;
+        this.clave = clave;
+        this.fondos = fondos;
+    }
     
     public Cliente(String nombre, Integer cedula, String codigo, Integer clave) {
         this.nombre = nombre;

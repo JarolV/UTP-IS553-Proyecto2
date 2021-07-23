@@ -58,12 +58,14 @@ public class ClienteMemoria implements ClienteDao{
     }
 
     @Override
-    public void AgregarSaldo(String codigo, Integer consignacion){
+    public boolean AgregarSaldo(String codigo, Integer consignacion) throws excepcionDatos{
         for (Cliente dato : datos) {
             if (dato.getCodigo().equals(codigo)) {
                 dato.setFondos(dato.getFondos()+consignacion);
+                return true;
             }
         }
+        throw  new excepcionDatos("No exite ninguna cuenta con ese numero");
     }
 
     

@@ -1,0 +1,3 @@
+Artes;3;3;3;6;4;
+Mecanica;3;2;3;2;1;
+Industrial;0;0;0;0;0;
