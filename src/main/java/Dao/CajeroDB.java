@@ -79,6 +79,8 @@ public class CajeroDB implements CajeroDao{
     }
 
     private Integer disponible(Cajero cajero){
+        System.out.println(cajero.getCincuentamil()+" "+cajero.getVeintemil()+" "+cajero.getDiezmil()+" "+cajero.getCincomil()+" "
+                +cajero.getDosmil());
         Integer total=cajero.getCincuentamil()*50000+cajero.getVeintemil()*20000+cajero.getDiezmil()*10000+cajero.getCincomil()*5000
                 +cajero.getDosmil()*2000;
         return total;
@@ -90,37 +92,73 @@ public class CajeroDB implements CajeroDao{
         for(int i=0;i<5;i++) {
             billetes[i] = 0;
         }
-        
         for(Cajero cajeroEditar:datos){
             if (cajeroEditar.getCodigoCajero().equals(codigoCajero)) {
-              if(monto<disponible(cajeroEditar)){
+              if(monto<=disponible(cajeroEditar)){
+                  System.out.println(disponible(cajeroEditar));
                   Integer cant50=monto/50000;
-                  if(cant50>=1&&cant50<=cajeroEditar.getCincuentamil()){
-                      billetes[0]=cant50;
-                      monto=monto-cant50*50000;
+                  while(true){
+                      if(cant50>=1&&cant50<=cajeroEditar.getCincuentamil()){
+                        billetes[0]=cant50;
+                        monto=monto-cant50*50000;
+                        break;
+                      }else{
+                        cant50=cant50-1;
+                      }
                   }
+                  System.out.println("cicuentamil"+cant50);
+                  
                   Integer cant20=monto/20000;
-                  if(cant20>=1&&cant20<=cajeroEditar.getVeintemil()){
-                     billetes[1]=cant20;
-                     monto=monto-cant20*20000;
+                  while(true){
+                    if(cant20>=1&&cant20<=cajeroEditar.getVeintemil()){
+                       billetes[1]=cant20;
+                       monto=monto-cant20*20000;
+                       break;
+                    }else{
+                        cant20=cant20-1;
+                    }
                   }
+                  System.out.println("veintemil"+cant20);
                   Integer cant10=monto/10000;
-                  if(cant10>=1&&cant10<=cajeroEditar.getDiezmil()){
-                     billetes[2]=cant10;
-                     monto=monto-cant10*10000;
+                  while(true){
+                    if(cant10>=1&&cant10<=cajeroEditar.getDiezmil()){
+                       billetes[2]=cant10;
+                       monto=monto-cant10*10000;
+                       break;
+                    }else{
+                        cant10=cant10-1;
+                    }
                   }
+                  System.out.println("diezmil"+cant10);
                   Integer cant5=monto/5000;
-                  if(cant5>=1&&cant5<=cajeroEditar.getCincomil()){
-                     billetes[3]=cant5;
-                     monto=monto-cant5*5000;
+                  while(true){
+                    if(cant5>=1&&cant5<=cajeroEditar.getCincomil()){
+                       billetes[3]=cant5;
+                       monto=monto-cant5*5000;
+                       break;
+                    }else{
+                        cant5=cant5-1;
+                    }
                   }
+                  System.out.println("cincomil "+cant5);
+                  
                   Integer cant2=monto/2000;
-                  if(cant2>=1&&cant2<=cajeroEditar.getDosmil()){
-                     billetes[4]=cant2;
-                     monto=monto-cant2*2000;
+                  while(true){
+                    if(cant2>=1&&cant2<=cajeroEditar.getDosmil()){
+                       billetes[4]=cant2;
+                       monto=monto-cant2*2000;
+                       break;
+                    }else{
+                        cant2=cant2-1;  
+                    }
                   }
+                    
+                  System.out.println("dosmil"+cant2);
+                  System.out.println("holi"+cant50+" "+cant20+" "+cant10+" "+cant5+" "+cant2);
+                  System.out.println("monto sin valor"+monto);
+                  
                   if(monto!=0){
-                      throw new excepcionDatos("No se puede realizar la operacion");
+                      throw new excepcionDatos("Este monto no es posible retirarlo");
                   }  
                   cajeroEditar.setCincuentamil(cajeroEditar.getCincuentamil()-cant50);
                   cajeroEditar.setVeintemil(cajeroEditar.getVeintemil()-cant20);
